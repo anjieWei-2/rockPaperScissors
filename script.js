@@ -76,7 +76,6 @@ function playRound(playerSelection, computerSelection){
         results.textContent= 'You sure thats an option?'
     }
 }
-<<<<<<< HEAD
 
 
 document.getElementById('rock').addEventListener('click',()=>{
@@ -88,5 +87,3 @@ document.getElementById('scissors').addEventListener('click',()=>{
 document.getElementById('paper').addEventListener('click',()=>{
     playRound('PAPER');
 })
-=======
->>>>>>> 470c02bc7ec8be71f698627adb40988ac3a576b7
