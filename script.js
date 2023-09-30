@@ -1,39 +1,92 @@
+results = document.getElementById('results')
+playerScoreDisplay = document.getElementById('playerScore')
+computerScoreDisplay = document.getElementById('computerScore')
+function setZero(){
+    playerScoreDisplay.textContent = 0
+    playerScore = 0
+    computerScoreDisplay.textContent = 0
+    computerScore = 0
+}
+setZero()
+
 function getComputerChoice(){
     possibles=['Rock','Paper', 'Scissors']
-    result=Math.floor(Math.random()*3)
-    result=possibles[result]
-    return result
+    computerSelection=Math.floor(Math.random()*3)
+    computerSelection=possibles[computerSelection]
+    return computerSelection
 }
+
 function playRound(playerSelection, computerSelection){
-    playerSelection=prompt('Rock, paper, or scissors?').toUpperCase()
     computerSelection=getComputerChoice().toUpperCase()
+    if(playerScore==5||computerScore==5){
+        setZero()
+    }
     if (playerSelection==computerSelection) {
-        return'Draw! Both ' + playerSelection
+        results.textContent='Draw! Both ' + playerSelection
     } else if (playerSelection=='ROCK') {
         if(computerSelection=='SCISSORS'){
-            return 'You won! Rock beats scissors!'
+            results.textContent='You won! Rock beats scissors!'
+            playerScore+=1
+            playerScoreDisplay.textContent=playerScore
+            if(playerScore==5){
+                results.append(' You have 5 points first! You won the game!')
+                setZero()
+            }
         }else{
-            return 'Sorry. Paper beats rock'
+            results.textContent= 'Sorry. Paper beats rock'
+            computerScore+=1
+            computerScoreDisplay.textContent=computerScore
+            if(computerScore==5){
+                results.append(' The computer have 5 points first. Sorry you lost.')
+            }
         }
     }else if (playerSelection=='SCISSORS'){
         if(computerSelection=='Rock'){
-            return 'Sorry, Rock beats scissors'
+            results.textContent= 'Sorry, Rock beats scissors.'
+            computerScore+=1
+            computerScoreDisplay.textContent=computerScore
+            if(computerScore==5){
+                results.append(' The computer have 5 points first. Sorry you lost.')
+            }
         }else{
-            return 'You won! Scissors beats paper'
+            results.textContent= 'You won! Scissors beats paper.'
+            playerScore+=1
+            playerScoreDisplay.textContent=playerScore
+            if(playerScore==5){
+                results.append(' You have 5 points first! You won the game!')
+            }
         }
     }else if (playerSelection=='PAPER'){
         if(computerSelection=='ROCK'){
-            return 'You won! Paper beats rock'
+            results.textContent= ' You won! Paper beats rock.'
+            playerScore+=1
+            playerScoreDisplay.textContent=playerScore
+            if(playerScore==5){
+                results.append(' You have 5 points first! You won the game!')
+            }
         }else{
-            return 'Sorry, scissors beat paper'
+            results.textContent= 'Sorry, scissors beat paper.'
+            computerScore+=1
+            computerScoreDisplay.textContent=computerScore
+            if(computerScore==5){
+                results.append(' The computer have 5 points first. Sorry you lost.')
+            }
         }
     }else{
-        return 'You sure thats an option?'
+        results.textContent= 'You sure thats an option?'
     }
 }
 
 function game(){
-    for (let i =0; i < 5; i++){
-        console.log(playRound())
-    }
+    results.append(playRound())
 }
+
+document.getElementById('rock').addEventListener('click',()=>{
+    playRound('ROCK');
+})
+document.getElementById('scissors').addEventListener('click',()=>{
+    playRound('SCISSORS');
+})
+document.getElementById('paper').addEventListener('click',()=>{
+    playRound('PAPER');
+})
