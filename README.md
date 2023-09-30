@@ -1,3 +1,3 @@
 # rockPaperScissors
-rock paper scissors./n
+rock paper scissors.
 practiced js.
