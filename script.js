@@ -31,9 +31,3 @@ function playRound(playerSelection, computerSelection){
         return 'You sure thats an option?'
     }
 }
-
-function game(){
-    for (let i =0; i < 5; i++){
-        console.log(playRound())
-    }
-}
